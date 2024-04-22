@@ -1,5 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document';
-import Header from '@/components/header';
+import Navigation from '@/components/navigation';
 
 export default function Document() {
   const isLogged = true;
@@ -8,7 +8,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <Header isLogged={isLogged} />
+        <Navigation isLogged={isLogged} />
         <Main />
         <NextScript />
       </body>

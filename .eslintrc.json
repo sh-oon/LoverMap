@@ -5,7 +5,12 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "ignorePatterns": ["node_modules/"],
+  "ignorePatterns": [
+    "node_modules/",
+    ".next/",
+    "yarn/",
+    "public/"
+  ],
   "rules": {
     "no-console": "warn",
     "no-debugger": "warn"
