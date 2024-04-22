@@ -1,4 +1,5 @@
 import { Inter } from 'next/font/google';
+import Navigation from '@/components/navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,9 +18,13 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ clientId, clientSecret }: Props) {
+  const isLogged = false;
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24`}
-    ></main>
+    <>
+      <Navigation isLogged={isLogged} />
+      <main
+        className={`flex min-h-screen flex-col items-center justify-between p-24`}
+      ></main>
+    </>
   );
 }
