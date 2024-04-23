@@ -3,23 +3,12 @@
 import React, { useState } from 'react';
 import { NextPage } from 'next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  findIconDefinition,
-  IconDefinition,
-  IconLookup,
-} from '@fortawesome/fontawesome-svg-core';
 import Link from 'next/link';
+import { generateIconDefinition } from '@/utils/generateIcon';
 
 type NavigationProps = {
   isLogged: boolean;
 };
-
-// Fontawesome icons
-const barsLookup: IconLookup = { prefix: 'fas', iconName: 'bars' };
-const barsIconDefinition: IconDefinition = findIconDefinition(barsLookup);
-const listCheckLookup: IconLookup = { prefix: 'fas', iconName: 'list-check' };
-const listCheckIconDefinition: IconDefinition =
-  findIconDefinition(listCheckLookup);
 
 const Navigation: NextPage<NavigationProps> = (props) => {
   const [isLogged, setIsLogged] = useState<boolean>(props.isLogged);
@@ -37,17 +26,15 @@ const Navigation: NextPage<NavigationProps> = (props) => {
         }}
       >
         <FontAwesomeIcon
-          className={
-            'border border-blue-900 bg-blue-900 rounded-lg p-2 hover:bg-blue-800 transition-all'
-          }
+          className={`rounded-lg p-2 hover:bg-blue-800 transition-all ${isMenuOpen ? 'bg-blue-800' : 'bg-blue-900'}`}
           size={'xl'}
-          icon={barsIconDefinition}
+          icon={generateIconDefinition('bars')}
         />
       </button>
       <nav className={'mt-2'}>
         <ul className={'flex flex-col justify-center gap-2'}>
           <li
-            className={`flex items-center justify-start border border-blue-900 bg-blue-900 overflow-hidden rounded-lg p-2 hover:bg-blue-800 transition-all`}
+            className={`flex items-center justify-start bg-blue-900 overflow-hidden rounded-lg p-2 hover:bg-blue-800 transition-all`}
           >
             <Link
               href={'/index'}
@@ -56,7 +43,7 @@ const Navigation: NextPage<NavigationProps> = (props) => {
               <FontAwesomeIcon
                 className={''}
                 size={'xl'}
-                icon={listCheckIconDefinition}
+                icon={generateIconDefinition('list-check')}
               />
               {isMenuOpen && (
                 <span className={'whitespace-nowrap'}>To do List</span>
