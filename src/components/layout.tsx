@@ -17,10 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <main className={'flex min-h-dvh'}>
         <Navigation isLogged />
-        <div className={'pt-3 pl-8 flex-1'}>
-          <h1 className={'py-4'}>{currentMenu.name}</h1>
-          {children}
-        </div>
+        {children}
       </main>
     </>
   );

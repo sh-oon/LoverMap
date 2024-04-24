@@ -28,6 +28,7 @@ const Navigation: NextPage<NavigationProps> = (props) => {
         <FontAwesomeIcon
           className={`rounded-lg p-2 hover:bg-blue-800 transition-all ${isMenuOpen ? 'bg-blue-800' : 'bg-blue-900'}`}
           size={'xl'}
+          color={'white'}
           icon={generateIconDefinition('bars')}
         />
       </button>
@@ -46,10 +47,13 @@ const Navigation: NextPage<NavigationProps> = (props) => {
                 <FontAwesomeIcon
                   className={''}
                   size={'xl'}
+                  color={'white'}
                   icon={generateIconDefinition(nav.icon)}
                 />
                 {isMenuOpen && (
-                  <span className={'whitespace-nowrap'}>{nav.name}</span>
+                  <span className={'whitespace-nowrap text-white'}>
+                    {nav.name}
+                  </span>
                 )}
               </div>
             </Link>
