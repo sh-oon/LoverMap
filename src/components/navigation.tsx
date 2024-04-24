@@ -16,17 +16,17 @@ const Navigation: NextPage<NavigationProps> = (props) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
-    <div
-      className={`pt-4 px-2 bg-blue-950 h-dvh ${isMenuOpen ? 'w-40' : 'w-[58px]'} width-anim`}
+    <aside
+      className={`pt-4 px-2 bg-blue-950 h-dvh ${isMenuOpen ? 'w-44' : 'w-[58px]'} width-anim`}
     >
       <button
-        className={'flex justify-center items-center'}
+        className={'flex items-center w-full p-2'}
         onClick={() => {
           setIsMenuOpen(!isMenuOpen);
         }}
       >
         <FontAwesomeIcon
-          className={`rounded-lg p-2 hover:bg-blue-800 transition-all ${isMenuOpen ? 'bg-blue-800' : 'bg-blue-900'}`}
+          className={`rounded-lg p-2}`}
           size={'xl'}
           color={'white'}
           icon={generateIconDefinition('bars')}
@@ -59,7 +59,7 @@ const Navigation: NextPage<NavigationProps> = (props) => {
             </Link>
           ))}
       </nav>
-    </div>
+    </aside>
   );
 };
 

@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
-      <main className={'flex min-h-dvh'}>
+      <main className={'flex relative'}>
         <Navigation isLogged />
         {children}
       </main>
