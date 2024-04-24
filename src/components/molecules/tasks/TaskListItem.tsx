@@ -22,7 +22,7 @@ const TaskListItem = ({
   emphasize,
 }: TaskListItemProps) => {
   return (
-    <div className={'flex items-center'}>
+    <div className={'flex items-center p-2'}>
       <StatusPoint status={status} empty={empty} size={size} />
       <div className={'ml-2'}>
         <div className={'font-bold'}>

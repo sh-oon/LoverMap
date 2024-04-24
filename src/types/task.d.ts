@@ -10,5 +10,20 @@ export type TTask = {
   tail?: string;
   emphasize?: boolean;
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
+};
+
+export type TTodoList = {
+  checked: boolean;
+  content: string;
+  createdAt: string;
+  updatedAt?: string;
+  important?: boolean;
+};
+
+export type TSectionItem = {
+  id: number;
+  title: string;
+  type: 'task' | 'todo';
+  tasks: TTask[] | TTodoList[];
 };

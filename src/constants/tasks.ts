@@ -1,4 +1,4 @@
-import { TTask } from '@/types/task';
+import { TTask, TTodoList } from '@/types/task';
 
 export const TASKS: TTask[] = [
   {
@@ -40,6 +40,76 @@ export const TASKS: TTask[] = [
     id: 5,
     title: 'Task 5',
     status: 'error',
+    content: 'This is a task.',
+    createdAt: '2021-01-01 00:00:00',
+    updatedAt: '2021-01-01 00:00:00',
+  },
+  {
+    id: 6,
+    title: 'Task 6',
+    status: 'progress',
+    content: 'This is a task.',
+    createdAt: '2021-01-01 00:00:00',
+    updatedAt: '2021-01-01 00:00:00',
+  },
+  {
+    id: 7,
+    title: 'Task 7',
+    status: 'done',
+    head: 'head message',
+    tail: 'tail message',
+    emphasize: true,
+    content: 'This is a task.',
+    createdAt: '2021-01-01 00:00:00',
+    updatedAt: '2021-01-01 00:00:00',
+  },
+  {
+    id: 8,
+    title: 'Task 8',
+    status: 'disabled',
+    content: 'This is a task.',
+    createdAt: '2021-01-01 00:00:00',
+    updatedAt: '2021-01-01 00:00:00',
+  },
+  {
+    id: 9,
+    title: 'Task 9',
+    status: 'processing',
+    content: 'This is a task.',
+    createdAt: '2021-01-01 00:00:00',
+    updatedAt: '2021-01-01 00:00:00',
+  },
+  {
+    id: 10,
+    title: 'Task 10',
+    status: 'error',
+    content: 'This is a task.',
+    createdAt: '2021-01-01 00:00:00',
+    updatedAt: '2021-01-01 00:00:00',
+  },
+];
+
+export const ASSIGN_TASKS: TTodoList[] = [
+  {
+    checked: false,
+    content: 'This is a task.',
+    createdAt: '2021-01-01 00:00:00',
+    updatedAt: '2021-01-01 00:00:00',
+  },
+  {
+    checked: true,
+    content: 'This is a task.',
+    important: true,
+    createdAt: '2021-01-01 00:00:00',
+    updatedAt: '2021-01-01 00:00:00',
+  },
+  {
+    checked: false,
+    content: 'This is a task.',
+    createdAt: '2021-01-01 00:00:00',
+  },
+  {
+    checked: false,
     content: 'This is a task.',
     createdAt: '2021-01-01 00:00:00',
     updatedAt: '2021-01-01 00:00:00',
