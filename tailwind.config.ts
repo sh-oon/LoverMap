@@ -21,6 +21,11 @@ const config: Config = {
       },
     },
   },
+  safelist: [
+    {
+      pattern: /(bg|border)-(red|yellow|green|gray|blue)-(300|500)/,
+    },
+  ],
   plugins: [],
 };
 export default config;
