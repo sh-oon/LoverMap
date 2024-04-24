@@ -6,6 +6,7 @@ export type TTask = {
   title: string;
   status: TStatus;
   content: string;
+  empty?: boolean;
   head?: string;
   tail?: string;
   emphasize?: boolean;
@@ -14,6 +15,7 @@ export type TTask = {
 };
 
 export type TTodoList = {
+  id: number;
   checked: boolean;
   content: string;
   createdAt: string;

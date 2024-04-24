@@ -91,12 +91,14 @@ export const TASKS: TTask[] = [
 
 export const ASSIGN_TASKS: TTodoList[] = [
   {
+    id: 1,
     checked: false,
     content: 'This is a task.',
     createdAt: '2021-01-01 00:00:00',
     updatedAt: '2021-01-01 00:00:00',
   },
   {
+    id: 2,
     checked: true,
     content: 'This is a task.',
     important: true,
@@ -104,11 +106,13 @@ export const ASSIGN_TASKS: TTodoList[] = [
     updatedAt: '2021-01-01 00:00:00',
   },
   {
+    id: 3,
     checked: false,
     content: 'This is a task.',
     createdAt: '2021-01-01 00:00:00',
   },
   {
+    id: 4,
     checked: false,
     content: 'This is a task.',
     createdAt: '2021-01-01 00:00:00',

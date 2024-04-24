@@ -5,6 +5,7 @@ import { TTask, TTodoList } from '@/types/task';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { generateIconDefinition } from '@/utils/generateIcon';
 import TaskListItem from '@/components/molecules/tasks/TaskListItem';
+import TodoListItem from '@/components/molecules/tasks/TodoListItem';
 
 type ListTableProps = {
   tasks: TTask[] | TTodoList[];
@@ -14,14 +15,14 @@ type ListTableProps = {
 };
 
 const ListTable = ({ tasks, title, itemType, ...props }: ListTableProps) => {
-  const [taskList, setTaskList] = useState<TTask[] | TTodoList[]>(tasks);
+  const [itemList, setItemList] = useState<(TTask | TTodoList)[]>(tasks);
 
   function isTask(item: TTask | TTodoList): item is TTask {
     return 'status' in item;
   }
 
   function isTodoList(item: TTask | TTodoList): item is TTodoList {
-    return 'todo-list-specific-property' in item;
+    return 'checked' in item;
   }
 
   return (
@@ -48,18 +49,38 @@ const ListTable = ({ tasks, title, itemType, ...props }: ListTableProps) => {
         </div>
 
         <div>
-          {taskList.map((task: TTask | TTodoList, index) => (
+          {itemList.map((item: TTask | TTodoList, index) => (
             <React.Fragment key={index}>
-              {isTask(task) && (
+              {isTask(item) && (
                 <TaskListItem
                   key={index}
-                  status={task.status}
+                  status={item.status}
                   empty={false}
                   size={'md'}
-                  head={task.head}
-                  content={task.content}
-                  tail={task.tail}
-                  emphasize={task.emphasize}
+                  head={item.head}
+                  content={item.content}
+                  tail={item.tail}
+                  emphasize={item.emphasize}
+                />
+              )}
+              {isTodoList(item) && (
+                <TodoListItem
+                  key={index}
+                  id={item.id}
+                  checked={item.checked}
+                  content={item.content}
+                  important={item.important}
+                  setChecked={() => {
+                    if (isTodoList(item)) {
+                      const newItems = itemList.map((i) => {
+                        if (i.id === item.id && isTodoList(i)) {
+                          return { ...i, checked: !i.checked };
+                        }
+                        return i;
+                      });
+                      setItemList(newItems);
+                    }
+                  }}
                 />
               )}
             </React.Fragment>
