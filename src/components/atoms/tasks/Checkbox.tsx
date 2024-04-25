@@ -11,11 +11,12 @@ type CheckboxProps = {
 
 const Checkbox = ({ id, checked }: CheckboxProps) => {
   return (
-    <div className={'border w-6 h-6'}>
+    <div
+      className={`border w-6 h-6 rounded-md overflow-hidden items-center justify-center flex ${checked ? 'bg-blue-950' : 'bg-white'}`}
+    >
       {checked && (
         <FontAwesomeIcon
-          className={'w-full h-full bg-blue-950'}
-          size={'xl'}
+          size={'lg'}
           color={'white'}
           icon={generateIconDefinition('check')}
         />

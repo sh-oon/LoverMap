@@ -15,7 +15,9 @@ type ListTableProps = {
 };
 
 const ListTable = ({ tasks, title, itemType, ...props }: ListTableProps) => {
-  const [itemList, setItemList] = useState<(TTask | TTodoList)[]>(tasks);
+  const [itemList, setItemList] = useState<(TTask | TTodoList)[]>(
+    sortedItems(tasks),
+  );
 
   function isTask(item: TTask | TTodoList): item is TTask {
     return 'status' in item;
@@ -23,6 +25,37 @@ const ListTable = ({ tasks, title, itemType, ...props }: ListTableProps) => {
 
   function isTodoList(item: TTask | TTodoList): item is TTodoList {
     return 'checked' in item;
+  }
+
+  function sortedItems(array: (TTask | TTodoList)[]): (TTask | TTodoList)[] {
+    return array.sort((a, b) => {
+      if (isTodoList(a) && isTodoList(b)) {
+        // checked 비교
+        if (a.checked && !b.checked) {
+          return 1;
+        }
+        if (!a.checked && b.checked) {
+          return -1;
+        }
+      }
+      // createdAt 비교
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      // updatedAt 비교
+      if (a?.updatedAt && b?.updatedAt) {
+        if (a.updatedAt > b.updatedAt) {
+          return -1;
+        }
+        if (a.updatedAt < b.updatedAt) {
+          return 1;
+        }
+      }
+      return 0;
+    });
   }
 
   return (
@@ -78,7 +111,8 @@ const ListTable = ({ tasks, title, itemType, ...props }: ListTableProps) => {
                         }
                         return i;
                       });
-                      setItemList(newItems);
+
+                      setItemList(sortedItems(newItems));
                     }
                   }}
                 />
