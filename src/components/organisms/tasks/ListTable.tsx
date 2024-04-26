@@ -20,7 +20,7 @@ const ListTable = ({ tasks, title, itemType, ...props }: ListTableProps) => {
   );
 
   function isTask(item: TTask | TTodoList): item is TTask {
-    return 'status' in item;
+    return 'state' in item;
   }
 
   function isTodoList(item: TTask | TTodoList): item is TTodoList {
@@ -87,7 +87,7 @@ const ListTable = ({ tasks, title, itemType, ...props }: ListTableProps) => {
               {isTask(item) && (
                 <TaskListItem
                   key={index}
-                  status={item.status}
+                  state={item.state}
                   empty={false}
                   size={'md'}
                   head={item.head}

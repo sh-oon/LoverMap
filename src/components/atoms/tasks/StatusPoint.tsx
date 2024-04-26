@@ -1,13 +1,13 @@
 import React from 'react';
-import { TSize, TStatus } from '@/types/task';
+import { TSize, TState } from '@/types/task';
 
 type StatusPointProps = {
-  status: TStatus;
+  state: TState;
   empty: boolean;
   size: TSize;
 };
 
-const StatusPoint = ({ status, empty, size }: StatusPointProps) => {
+const StatusPoint = ({ state, empty, size }: StatusPointProps) => {
   function getClassName(): string {
     const sizeClass = (size: TSize): string => {
       switch (size) {
@@ -24,10 +24,10 @@ const StatusPoint = ({ status, empty, size }: StatusPointProps) => {
       }
     };
 
-    const colorClass = (status: TStatus): string => {
+    const colorClass = (state: TState): string => {
       let color = '';
 
-      switch (status) {
+      switch (state) {
         case 'progress':
           color = 'blue-500';
           break;
@@ -51,7 +51,7 @@ const StatusPoint = ({ status, empty, size }: StatusPointProps) => {
       return `bg-${color}`;
     };
 
-    return `rounded-full ${sizeClass(size)} ${colorClass(status)}`;
+    return `rounded-full ${sizeClass(size)} ${colorClass(state)}`;
   }
 
   return <div className={getClassName()}></div>;

@@ -45,7 +45,6 @@ const Navigation: NextPage<NavigationProps> = (props) => {
                 className={`flex items-center ${isMenuOpen ? 'justify-start gap-4' : 'justify-center'}`}
               >
                 <FontAwesomeIcon
-                  className={''}
                   size={'xl'}
                   color={'white'}
                   icon={generateIconDefinition(nav.icon)}

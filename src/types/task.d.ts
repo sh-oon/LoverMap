@@ -1,10 +1,10 @@
-export type TStatus = 'progress' | 'done' | 'disabled' | 'processing' | 'error';
+export type TState = 'progress' | 'done' | 'disabled' | 'processing' | 'error';
 export type TSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type TTask = {
   id: number;
   title: string;
-  status: TStatus;
+  state: TState;
   content: string;
   empty?: boolean;
   head?: string;
