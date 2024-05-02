@@ -26,19 +26,9 @@ const navigation: TNavigation[] = [
     icon: 'home',
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    icon: 'chart-line',
-  },
-  {
     path: '/to-do',
     name: 'To do List',
     icon: 'list-check',
-  },
-  {
-    path: '/map',
-    name: 'Map',
-    icon: 'map-location-dot',
   },
 ];
 
