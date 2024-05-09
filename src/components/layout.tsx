@@ -1,22 +1,15 @@
 import React from 'react';
-import Navigation from '@/components/navigation';
-import { useRouter } from 'next/router';
-import { getNavigationInfo } from '@/constants/navigation';
+import Header from '@/components/organisms/header';
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 const Layout = ({ children }: LayoutProps) => {
-  const router = useRouter();
-
-  // 현재 경로
-  const currentMenu = getNavigationInfo(router.pathname);
-
   return (
     <>
-      <main className={'flex relative'}>
-        <Navigation isLogged />
+      <main className={'h-screen'}>
+        <Header />
         {children}
       </main>
     </>
