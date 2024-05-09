@@ -33,8 +33,10 @@ const TextField = ({
   children,
 }: TextFieldProps) => {
   return (
-    <div className={'flex flex-col relative w-full'}>
-      <label htmlFor={id}>{label}</label>
+    <div className={'flex flex-col gap-1 relative w-full'}>
+      <label className={'font-bold'} htmlFor={id}>
+        {label}
+      </label>
       <div className={'flex gap-4'}>
         <Input
           value={inputValue}
