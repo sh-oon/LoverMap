@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Input from '@/components/atoms/Input';
+import useDebounce from '@/hooks/useDebouncer';
 
 type TextFieldProps = {
   inputValue: string;
@@ -32,6 +33,17 @@ const TextField = ({
   errorMessage,
   children,
 }: TextFieldProps) => {
+  const validatePattern = (pattern: string | RegExp, value: string) => {
+    if (typeof pattern === 'string') {
+      return value === pattern;
+    } else if (typeof pattern === 'object') {
+      const regExp = new RegExp(pattern);
+      return regExp.test(value);
+    }
+  };
+
+  const debouncedSetIsError = useDebounce(setIsError, 300);
+
   return (
     <div className={'flex flex-col gap-1 relative w-full'}>
       <label className={'font-bold'} htmlFor={id}>
@@ -43,14 +55,9 @@ const TextField = ({
           onChange={(e) => {
             setInputValue(e.target.value);
             if (pattern && e.target.value !== '') {
-              const regExp = new RegExp(pattern);
-              if (!regExp.test(e.target.value)) {
-                setIsError(true);
-              } else {
-                setIsError(false);
-              }
+              debouncedSetIsError(!validatePattern(pattern, e.target.value));
             } else {
-              setIsError(false);
+              debouncedSetIsError(false);
             }
           }}
           placeholder={placeholder}
