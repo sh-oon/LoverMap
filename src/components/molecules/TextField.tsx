@@ -10,8 +10,12 @@ type TextFieldProps = {
   placeholder: string;
   type?: HTMLInputElement['type'];
   id: string;
-  pattern?: string;
+  pattern?: string | RegExp;
   maxLength?: number;
+  isError: boolean;
+  setIsError: (value: boolean) => void;
+  errorMessage: string;
+  children?: React.ReactNode;
 };
 
 const TextField = ({
@@ -23,19 +27,43 @@ const TextField = ({
   id,
   pattern,
   maxLength,
+  isError = false,
+  setIsError,
+  errorMessage,
+  children,
 }: TextFieldProps) => {
   return (
-    <div className={'flex flex-col gap-2'}>
+    <div className={'flex flex-col relative w-full'}>
       <label htmlFor={id}>{label}</label>
-      <Input
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder={placeholder}
-        type={type}
-        id={id}
-        pattern={pattern}
-        maxLength={maxLength}
-      />
+      <div className={'flex gap-4'}>
+        <Input
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+            if (pattern && e.target.value !== '') {
+              const regExp = new RegExp(pattern);
+              if (!regExp.test(e.target.value)) {
+                setIsError(true);
+              } else {
+                setIsError(false);
+              }
+            } else {
+              setIsError(false);
+            }
+          }}
+          placeholder={placeholder}
+          type={type}
+          id={id}
+          maxLength={maxLength}
+          error={isError}
+        />
+        {children}
+      </div>
+      {isError && (
+        <span className={'absolute top-full text-red-500 text-sm'}>
+          {errorMessage}
+        </span>
+      )}
     </div>
   );
 };

@@ -7,8 +7,9 @@ type InputProps = {
   placeholder: string;
   type?: HTMLInputElement['type'];
   maxLength?: number;
-  pattern?: string;
   id: string;
+  error?: boolean;
+  disabled?: boolean;
 };
 
 const Input = ({
@@ -18,13 +19,16 @@ const Input = ({
   type,
   id,
   maxLength,
-  pattern,
+  error = false,
+  disabled,
 }: InputProps) => {
   const [inputValue, setInputValue] = useState<string>(value);
 
   return (
     <input
-      className="w-full p-2 border border-gray-300 rounded-lg transition-all outline-none focus:border-blue-500"
+      className={`
+        ${error ? 'border-red-500 ' : 'border-gray-300 '}w-full p-2 border rounded-lg transition-all outline-none focus:border-blue-500
+      `}
       value={inputValue}
       onChange={(e) => {
         setInputValue(e.target.value);
@@ -33,8 +37,8 @@ const Input = ({
       placeholder={placeholder}
       type={type}
       id={id}
-      pattern={pattern}
       maxLength={maxLength}
+      disabled={disabled}
     />
   );
 };
